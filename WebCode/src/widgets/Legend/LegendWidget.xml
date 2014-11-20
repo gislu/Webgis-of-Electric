@@ -1,0 +1,13 @@
+<?xml version="1.0" ?>
+
+<configuration>
+    <usebasemaps>false</usebasemaps>
+    <useoperationallayers>true</useoperationallayers>
+    <excludelayer>变电站</excludelayer>
+    <respectcurrentmapscale>false</respectcurrentmapscale>
+</configuration>
+
+<!--
+    See Legend widget documentation at
+    http://links.esri.com/legendwidget
+-->

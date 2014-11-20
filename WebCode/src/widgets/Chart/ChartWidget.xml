@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<configuration>
+    <labels>
+        <layerselectionlabel>选择分析内容</layerselectionlabel>
+        <drawtoolmenulabel>选择范围绘制工具</drawtoolmenulabel>
+    </labels>
+    <layers>
+        <!-- The label of this layer refers to a layer added in the main configuration file.-->
+        <layer label="区域供电走势" url="http://2011-1201-1641:8399/arcgis/rest/services/point/MapServer/0">
+            <labelfield>NAME</labelfield>
+            <fields>
+           		 <field name="NAME"/>
+            	<field name="POWER"/>
+            </fields>
+            <medias>
+                <media caption="你选择了 {=COUNT} 个站点"
+                       chartfields="POWER"
+                       title="变电站等级分布图"
+                       type="linechart"/>
+            </medias>
+        </layer>
+        
+        <!-- This layer from a MapService is not drawn on the map but can still be selected from. -->
+    </layers>
+</configuration>

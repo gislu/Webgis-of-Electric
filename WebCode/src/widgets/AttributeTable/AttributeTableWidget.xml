@@ -1,0 +1,28 @@
+<?xml version="1.0" ?>
+<configuration>
+   <layer label="合肥市变电站" url="http://2011-1201-1641:8399/arcgis/rest/services/point/FeatureServer/0"></layer> <!-- non-mapped layer(s), added for just this widget -->
+
+   <layersettings>
+      <layer name="变电站"> <!-- Overwriting layer settings for a feature layer -->
+         <fields>
+            <field name="objectid" alias="Object ID"/>
+            <field name="NAME" alias="变电站名称"/>
+            <field name="LEVEL_" alias="等级"/>
+            <field name="ADDRESS" alias="地址"/>
+         </fields>
+         <showobjectid>true|false</showobjectid>
+         <showglobalid>true|false</showglobalid>
+         <exportlocation>true|false</exportlocation>          
+         <showattachments>true|false</showattachments>
+         <showrelatedrecords>true|false</showrelatedrecords>
+         <columnsorder>fields|alphabetical|fieldinspector</columnsorder>            
+     </layer>
+     
+  </layersettings>
+  <excludelayer>Recreation or PoolPermits</excludelayer> <!-- excludes the feature layer and the complete map service layer -->
+ 
+</configuration>
+<!--
+    See Attribute Table widget documentation at
+    http://links.esri.com/attributetablewidget
+-->

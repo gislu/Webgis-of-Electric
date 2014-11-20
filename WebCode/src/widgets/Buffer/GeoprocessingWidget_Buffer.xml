@@ -1,0 +1,31 @@
+	<configuration label="缓冲区计算">
+	<description/>
+	<taskurl>
+			http://2011-1201-1641:8399/arcgis/rest/services/BufferService/GPServer/BufferPoints
+		</taskurl>
+<inputparams>
+<param name="Input_Feature" geometrytype="point" label="选择缓冲点" required="true" type="featurerecordset" visible="true">
+<renderer type="simple">
+<defaultsymbol alpha="0.5" color="0x008844" size="3" type="simplemarker">
+<outline width="1" color="0x22DD00"/>
+</defaultsymbol>
+</renderer>
+</param>
+<param name="Distance" defaultvalue="500:Meters" label="缓冲距离" required="true" type="linearunit" visible="true">
+<choicelist>
+<choice value="esriMeters"/>
+<choice value="esriFeet"/>
+</choicelist>
+</param>
+</inputparams>
+<outputparams>
+<param name="Output_Polygon" geometrytype="polygon" label="缓冲结果" required="true" type="featurerecordset" visible="true">
+</param>
+</outputparams>
+<layerorder>Input_Feature,Output_Polygon</layerorder>
+</configuration>
+<!--
+
+    See Geoprocessing widget tag reference at
+    http://links.esri.com/geoprocessingwidget
+-->

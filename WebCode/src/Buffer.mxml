@@ -1,0 +1,71 @@
+<viewer:BaseWidget xmlns:fx="http://ns.adobe.com/mxml/2009"
+				   xmlns:s="library://ns.adobe.com/flex/spark"
+				   xmlns:mx="library://ns.adobe.com/flex/mx"
+				   xmlns:viewer="com.esri.viewer.*"
+				   xmlns:esri="http://www.esri.com/2008/ags"
+				   >
+	
+	<fx:Declarations>
+		<esri:GeometryService id="myGeometryService" fault="onGeometryFault(event);" url="http://2011-1201-1641:8399/arcgis/rest/services/Geometry/GeometryServer"/>
+	</fx:Declarations>	
+	<fx:Script>
+		<![CDATA[
+			import com.esri.ags.Graphic;
+			import com.esri.ags.SpatialReference;
+			import com.esri.ags.events.GeometryServiceEvent;
+			import com.esri.ags.geometry.MapPoint;
+			import com.esri.ags.geometry.Polygon;
+			import com.esri.ags.tasks.supportClasses.BufferParameters;
+			
+			import mx.controls.Alert;
+			
+		
+			
+			
+			private function onGeometryFault(evt:Event):void
+			{
+				mx.controls.Alert.show(evt.toString());
+			}
+			
+			
+			private function bufferCenterOfMap():void
+			{
+				var myMapCenterPoint:MapPoint = MapPoint(myMap.extent.center);
+				
+				var bufferParameters:BufferParameters = new BufferParameters();
+				bufferParameters.geometries = [myMapCenterPoint]; 
+				bufferParameters.distances = [ 200, 500 ];
+				bufferParameters.unit = GeometryService.UNIT_METER;
+				bufferParameters.outSpatialReference = new SpatialReference(4326);	
+				
+				myGeometryService.addEventListener(GeometryServiceEvent.BUFFER_COMPLETE, bufferCompleteHandler);
+				myGeometryService.buffer(bufferParameters);	
+				
+				graphicsLayer.add(new Graphic(myMapCenterPoint));				
+				function bufferCompleteHandler(event:GeometryServiceEvent):void
+				{
+					myGeometryService.removeEventListener(GeometryServiceEvent.BUFFER_COMPLETE, bufferCompleteHandler);
+					for each (var geometry:Polygon in event.result)
+					{
+						var graphic:Graphic = new Graphic();
+						graphic.geometry = geometry;
+						graphicsLayer.add(graphic);
+					}
+				}
+			}
+		]]>
+	</fx:Script>
+		<esri:Map id="myMap"
+			  crosshairVisible="true"
+			  level="3">
+		<esri:GraphicsLayer id="graphicsLayer"/>
+	</esri:Map>	
+	
+		<s:Button label="缓冲区" 
+				 width="100%"
+				 fontSize="18"
+				 fontStyle="italic"
+				 fontWeight="bold"
+				 click="bufferCenterOfMap()"/>
+
+</viewer:BaseWidget>

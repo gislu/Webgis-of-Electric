@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<configuration label="Louisville Police Stations">
+    <layer>http://2011-1201-1641:8399/arcgis/rest/services/point/MapServer/0</layer>
+    <titlefield>受损站点</titlefield>
+    <fields all="false">
+        <field name="NAME" alias="变电站"/>
+        <field name="PHOTOPATH" alias="照片"/>
+    </fields>
+    <filterfield>
+        <name>ADDRESS</name>
+        <alias>请输入要搜索的变电站名称 ：</alias>
+    </filterfield>
+    
+    <linkfield></linkfield>
+    <refreshrate></refreshrate>
+    <zoomscale>20000</zoomscale>
+    <query>damage=1</query>
+</configuration>
+
+<!--
+    See Query widget tag reference at
+    http://links.esri.com/querywidget
+-->

@@ -1,0 +1,33 @@
+	<configuration label="Voronoi分析">
+	<description/>
+	<taskurl>
+			http://2011-1201-1641:8399/arcgis/rest/services/VO/GPServer/VO
+		</taskurl>
+		
+<inputparams>
+<param name="Input_Feature"  label="选择分析点（多个）" geometrytype="point" required="true" type="featurerecordset" visible="true">
+<renderer type="simple">
+<defaultsymbol alpha="0.5" color="0x000000" size="5" type="simplemarker">
+<outline width="1" color="0x367517"/>
+</defaultsymbol>
+</renderer>
+</param>
+</inputparams>
+
+<outputparams>
+<param name="Output_Polygon"  label="分析结果"  geometrytype="polygon" required="true" type="featurerecordset" visible="true">
+<renderer type="simple">
+<defaultsymbol alpha="0.8" color="0xFF00FF" type="simplefill">
+<outline width="1" color="0xDF0029"/>
+</defaultsymbol>
+</renderer>
+</param>
+</outputparams>
+
+<layerorder>Input_Feature,Output_Polygon</layerorder>
+</configuration>
+<!--
+
+    See Geoprocessing widget tag reference at
+    http://links.esri.com/geoprocessingwidget
+-->

@@ -1,0 +1,24 @@
+<?xml version="1.0" ?>
+<configuration label="Louisville Parcels and Police">
+    <layers>
+        <layer>
+            <name>变电站（区域）</name>
+            <url>http://2011-1201-1641:8399/arcgis/rest/services/point/MapServer/0</url>
+            <expression>NAME like '[value]' or LEVEL_  = '[value]' </expression> <!--这里输入SQL表达式-->
+            <textsearchlabel>输入变电站站名或等级：</textsearchlabel>
+            <titlefield>NAME</titlefield>
+            <linkfield></linkfield>
+            <fields all="false">
+        	<field name="NAME" alias="变电站"/>
+        	<field name="LEVEL_" alias="等级"/>
+            </fields>
+        </layer>
+    </layers>
+    <zoomscale>10000</zoomscale>
+</configuration>
+
+<!--
+    See Search widget tag reference at
+    http://links.esri.com/searchwidget
+-->
+

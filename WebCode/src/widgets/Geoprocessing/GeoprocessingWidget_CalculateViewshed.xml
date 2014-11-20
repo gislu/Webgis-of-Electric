@@ -1,0 +1,30 @@
+<configuration label="Calculate viewshed">
+		<description/>
+			<taskurl>
+			http://sampleserver1.arcgisonline.com/ArcGIS/rest/services/Elevation/ESRI_Elevation_World/GPServer/Viewshed
+				</taskurl>
+
+				<inputparams>
+				<param name="Input_Observation_Point" geometrytype="point" label="选择建立地点" required="true" type="featurerecordset" visible="true">
+				<renderer type="simple">
+				<defaultsymbol alpha="0.5" color="0x008844" size="15" type="simplemarker">
+				<outline width="1" color="0x22DD00"/>
+				</defaultsymbol>
+				</renderer>
+			</param>
+			<param name="Viewshed_Distance" defaultvalue="1500:Meters" label="视界范围" required="true" type="linearunit" visible="true">
+			</param>
+			</inputparams>
+			<outputparams>
+			<param name="Viewshed_Result" geometrytype="polygon" label="分析结果" required="true" type="featurerecordset" visible="true">
+				<renderer type="simple">
+			</renderer>
+			</param>
+			</outputparams>
+			<layerorder>Input_Observation_Point,Viewshed_Result</layerorder>
+				</configuration>
+<!--
+
+    See Geoprocessing widget tag reference at
+    http://links.esri.com/geoprocessingwidget
+-->
