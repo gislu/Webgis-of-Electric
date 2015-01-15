@@ -1,4 +1,7 @@
 Webgis-of-Electric
 ==================
-WebCode°üº¬ÏµÍ³Web²¿·ÖµÄÇ°¶Ë´úÂë¡£
-Andriod°üº¬ÁËÏµÍ³µÄÒÆ¶¯¶Ë´úÂë
+A webgis system of Electric stations management.
+It consist of a Andriod App part and a web-system part.
+Each part can coummunicate with other part through the Internet 
+WebCodeåŒ…å«ç³»ç»ŸWebéƒ¨åˆ†çš„å‰ç«¯ä»£ç ã€‚
+AndriodåŒ…å«äº†ç³»ç»Ÿçš„ç§»åŠ¨ç«¯ä»£ç 
