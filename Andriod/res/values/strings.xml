@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="hello"></string>
-    <string name="app_name">移动变电站</string>
-    <string name="btn_edit_apply">Save</string>
-    <string name="btn_edit_discard">Quit</string>
+    <string name="hello">Hello World, AttributeEditor!</string>
+    <string name="app_name">Attribute Editor Sample</string>
+    <string name="btn_edit_apply">Apply</string>
+    <string name="btn_edit_discard">Discard</string>
+    <string name="quit">Quit</string>
+    <string name="Note">Note</string>
+    <string name="confirm">confirm</string>
+    <string name="htttp">http://</string>
+    <string name="bdz">城市变电站</string>
 </resources>

@@ -1,24 +1,11 @@
-/* Copyright 2011 ESRI
- *
- * All rights reserved under the copyright laws of the United States
- * and applicable international laws, treaties, and conventions.
- *
- * You may freely redistribute and use this sample code, with or
- * without modification, provided you include the original copyright
- * notice and use restrictions.
- *
- * See the sample code usage restrictions document for further information.
- *
- */
 
-package com.edu.lhw;
+package com.cityelc.ahu.lhw;
 
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
-import java.util.Map;
 
 import com.esri.core.map.FeatureType;
 import com.esri.core.map.Field;
@@ -31,15 +18,15 @@ public class FeatureLayerUtils {
 
     public static FieldType determineFieldType(Field field) {
 
-      if (field.getFieldType()== Field.esriFieldTypeString) {
+      if (field.getFieldType().equals("esriFieldTypeString")) {
         return FieldType.STRING;
-      } else if (field.getFieldType() == Field.esriFieldTypeSmallInteger
-          || field.getFieldType() == Field.esriFieldTypeInteger) {
+      } else if (field.getFieldType().equals("esriFieldTypeSmallInteger")
+          || field.getFieldType().equals("esriFieldTypeInteger")) {
         return FieldType.NUMBER;
-      } else if (field.getFieldType() == Field.esriFieldTypeSingle
-          || field.getFieldType()== Field.esriFieldTypeDouble) {
+      } else if (field.getFieldType().equals("esriFieldTypeSingle")
+          || field.getFieldType().equals("esriFieldTypeDouble")) {
         return FieldType.DECIMAL;
-      } else if (field.getFieldType() == Field.esriFieldTypeDate) {
+      } else if (field.getFieldType().equals("esriFieldTypeDate")) {
         return FieldType.DATE;
       }
       return null;
@@ -51,11 +38,11 @@ public class FeatureLayerUtils {
    */
   public static boolean isFieldValidForEditing(Field field) {
 
-    int fieldType = field.getFieldType();
+    String fieldType = field.getFieldType();
 
-    if (field.isEditable() && fieldType != Field.esriFieldTypeOID && fieldType != Field.esriFieldTypeGeometry
-        && fieldType != Field.esriFieldTypeBlob && fieldType != Field.esriFieldTypeRaster
-        && fieldType != Field.esriFieldTypeGUID && fieldType != Field.esriFieldTypeXML) {
+    if (field.isEditable() && !fieldType.equals("esriFieldTypeOID") && !fieldType.equals("esriFieldTypeGeometry")
+        && !fieldType.equals("esriFieldTypeBlob") && !fieldType.equals("esriFieldTypeRaster")
+        && !fieldType.equals("esriFieldTypeGUID") && !fieldType.equals("esriFieldTypeXML")) {
 
       return true;
 
@@ -70,20 +57,27 @@ public class FeatureLayerUtils {
    * 
    * @return boolean hasValueChanged
    */
-  public static boolean setAttribute(Map<String, Object> attrs, Graphic oldGraphic, Field field, String value,
+  public static boolean setAttribute(Graphic newGraphic, Graphic oldGraphic, Field field, String value,
       DateFormat formatter) {
 
     boolean hasValueChanged = false;
       
-  
+    // check if the value is null and thats its changed, if so its been deleted
+    // and can be saved as
+    // such
+    // if (value == null && value != oldGraphic.getAttributeValue(field.getName())) {
+
+    // newGraphic.setAttributeValue(field.getName(), null);
+
+    // } else if (value != null) {
 
     // if its a string, and it has changed from the oldGraphic value
     if (FieldType.determineFieldType(field) == FieldType.STRING) {
         
       if (!value.equals(oldGraphic.getAttributeValue(field.getName()))) {
         
-        // set the value as it is        
-        attrs.put(field.getName(), value);
+        // set the value as it is
+        newGraphic.setAttributeValue(field.getName(), value);
         hasValueChanged = true;
  
       }
@@ -94,7 +88,7 @@ public class FeatureLayerUtils {
       if ( value.equals("") && oldGraphic.getAttributeValue(field.getName()) != Integer.valueOf(0))  {
 
         // set a null value on the new graphic
-        attrs.put(field.getName(), new Integer(0));
+        newGraphic.setAttributeValue(field.getName(), new Integer(0));
         hasValueChanged = true;
 
       } else {
@@ -103,7 +97,7 @@ public class FeatureLayerUtils {
         int intValue = Integer.parseInt(value);
         if (intValue != Integer.parseInt(oldGraphic.getAttributeValue(field.getName()).toString())) {
 
-          attrs.put(field.getName(), Integer.valueOf(intValue));
+          newGraphic.setAttributeValue(field.getName(), Integer.valueOf(intValue));
           hasValueChanged = true;
 
         }
@@ -115,7 +109,7 @@ public class FeatureLayerUtils {
       if ( (value.equals("") && oldGraphic.getAttributeValue(field.getName()) != Double.valueOf(0))) {
 
         // set a null value on the new graphic
-        attrs.put(field.getName(), new Double(0));
+        newGraphic.setAttributeValue(field.getName(), new Double(0));
         hasValueChanged = true;
 
       } else {
@@ -124,7 +118,7 @@ public class FeatureLayerUtils {
         double dValue = Double.parseDouble(value);
         if (dValue != Double.parseDouble(oldGraphic.getAttributeValue(field.getName()).toString())) {
 
-          attrs.put(field.getName(), Double.valueOf(dValue));
+          newGraphic.setAttributeValue(field.getName(), Double.valueOf(dValue));
           hasValueChanged = true;
 
         }
@@ -143,7 +137,7 @@ public class FeatureLayerUtils {
 
         if (dateInMillis != Long.parseLong(oldGraphic.getAttributeValue(field.getName()).toString())) {
 
-          attrs.put(field.getName(), Long.valueOf(dateInMillis));
+          newGraphic.setAttributeValue(field.getName(), Long.valueOf(dateInMillis));
           hasValueChanged = true;
         }
       } catch (ParseException e) {

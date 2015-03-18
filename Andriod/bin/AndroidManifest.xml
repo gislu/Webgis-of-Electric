@@ -1,25 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-	package="com.esri.arcgis.android.samples.attributeeditor"
-	android:versionCode="1" android:versionName="1.0">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.cityelc.ahu.lhw" android:versionCode="1"
+  android:versionName="1.0">
+  <application android:icon="@drawable/icon" 
+      android:label="@string/bdz" 
+      android:debuggable="true">
+  
+      
+      <activity android:name="com.cityelc.ahu.lhw.LogActivity" android:label="@string/app_name">
+           <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
+        <category android:name="android.intent.category.LAUNCHER" />
+      </intent-filter>
+    </activity>
 
-	<uses-sdk android:minSdkVersion="10" />
-	<uses-feature android:glEsVersion="0x00020000"
-		android:required="true" />
-	<uses-permission android:name="android.permission.INTERNET" />
-	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+      
+      
+     <activity android:name="com.cityelc.ahu.lhw.AttributeEditorActivity" android:label="@string/app_name"> 
+    </activity>
 
-	<application android:icon="@drawable/icon" android:label="@string/app_name"
-		android:debuggable="true">
-		<activity android:name="com.edu.lhw.AttributeEditorActivity"
-			android:label="@string/app_name" android:configChanges="orientation">
-			<intent-filter>
-				<action android:name="android.intent.action.MAIN" />
-				<category android:name="android.intent.category.LAUNCHER" />
-			</intent-filter>
-		</activity>
-
-	</application>
-
+     
+     
+     
+      <activity android:name="com.cityelc.ahu.lhw.UpdataActivity" android:label="@string/app_name">          
+    </activity>
+    
+      
+      
+      
+  </application>
+  <uses-sdk android:minSdkVersion="7" />
+  <uses-permission android:name="android.permission.INTERNET" />
+  <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+  <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+  <uses-permission android:name="android.permission.INTERNET"></uses-permission> 
 </manifest> 

@@ -1,8 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.esri.android.map.MapView
-  xmlns:android="http://schemas.android.com/apk/res/android"
-  android:id="@+id/map"
-  android:layout_width="fill_parent"
-  android:layout_height="fill_parent"
-  initExtent="-10868502.895856911 4470034.144641369 -10837928.084542884 4492965.25312689">  
-</com.esri.android.map.MapView>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_alignParentLeft="true"
+    android:orientation="vertical" >
+      
+     <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/Upload"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Upload" />
+
+        <Button
+            android:id="@+id/GPSbutton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="GPS" />
+
+        <Button
+            android:id="@+id/buttonZoomOut"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="縮小" />
+    </LinearLayout>
+    
+     <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:orientation="horizontal" >
+        <TextView
+            android:id="@+id/label"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:paddingBottom="10dip"
+            android:paddingLeft="10dip"
+            android:paddingRight="10dip"
+            android:paddingTop="10dip"
+            android:textSize="6pt" >
+        </TextView>
+    </LinearLayout>
+    
+      
+    <com.esri.android.map.MapView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/map"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        initExtent="-10868502.895856911 4470034.144641369 -10837928.084542884 4492965.25312689" >
+
+        <com.esri.android.map.ags.ArcGISTiledMapServiceLayer url="http://services.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer" />
+
+        <com.esri.android.map.ags.ArcGISDynamicMapServiceLayer
+            android:id="@+id/ksfieldsDynLayer"
+            url="http://sampleserver3.arcgisonline.com/ArcGIS/rest/services/Petroleum/KSFields/MapServer" />
+
+        <com.esri.android.map.ags.ArcGISFeatureLayer
+            android:id="@+id/ksfieldsFLayer"
+            mode="selection"
+            url="http://sampleserver3.arcgisonline.com/ArcGIS/rest/services/Petroleum/KSFields/FeatureServer/0" />
+    </com.esri.android.map.MapView>
+    
+  
+    
+
+
+
+</LinearLayout>
